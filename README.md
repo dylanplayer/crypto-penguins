@@ -1,25 +1,9 @@
-# This is my project title
+# Crypto Penguins App
 
-This sentence describes what my project is about summarized.
+## Apps
+You must `cd` into each app to run commands.
 
-## More Details
-
-I can explain how my project works here with different topics.
-
-## Upcoming
-
-- [x] I have done this activity
-- [ ] I plan to do this activity next
-
-## Contribution
-
-Feel free to contribute to this project to make it better!
-
-## License
-
-This project has an MIT License.
-
-## Made by love
-
-- [StarterTemplates](https://twitter.com/startertemp)
-- [LearnWeb3DAO](https://learnweb3.io)
+| App | Description |
+| --- | ----------- |
+| `hardhat` | The smart contract for crypto penguins. |
+| `web` | The web app for crypto penguins. |
