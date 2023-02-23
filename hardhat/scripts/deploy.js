@@ -7,7 +7,7 @@ async function main() {
 
   // Deploy CryptoPenguin contract
   const CryptoPenguin = await ethers.getContractFactory("CryptoPenguin");
-  const cryptoPenguin = await CryptoPenguin.deploy();
+  const cryptoPenguin = await CryptoPenguin.deploy("http://localhost:3000/api/penguins/");
 
   console.log("CryptoPenguin address:", cryptoPenguin.address);
 }

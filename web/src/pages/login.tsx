@@ -15,35 +15,43 @@ export default function LoginPage() {
 
   useEffect(() => {
     const handleAuth = async () => {
-      const { message } = await requestChallengeAsync({
-        address: address,
-        chainId: chain.id,
-      });
+      if (chain && address) {
+        const challenge = await requestChallengeAsync({
+          address: address,
+          chainId: chain.id,
+        });
+  
+        const message = challenge?.message;
+  
+        if (message) {
+          const signature = await signMessageAsync({ message });
+    
+          const res = await signIn("moralis-auth", {
+            message,
+            signature,
+            redirect: false,
+            callbackUrl: "/",
+          });
 
-      const signature = await signMessageAsync({ message });
-
-      // redirect user after success authentication to '/user' page
-      const { url } = await signIn("moralis-auth", {
-        message,
-        signature,
-        redirect: false,
-        callbackUrl: "/user",
-      });
-      /**
-       * instead of using signIn(..., redirect: "/user")
-       * we get the url from callback and push it to the router to avoid page refreshing
-       */
-      push(url);
+          if (res?.url) {
+            push(res?.url);
+          }
+        }
+      }
     };
+    
     if (status === "unauthenticated" && isConnected) {
       handleAuth();
     }
   }, [status, isConnected]);
 
   return (
-    <div>
-      <h3>Web3 Authentication</h3>
-      <ConnectButton />
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#024b6d] to-[#15162c]">
+      <div className="container max-w-md flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+        <h1 className="text-4xl font-bold text-white text-center">Welcome to Crypto Penguins</h1>
+        <p className="text-white text-center">Please connect your wallet to continue</p>
+        <ConnectButton />
+      </div>
+    </main>
   );
 }

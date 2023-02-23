@@ -4,7 +4,8 @@
   "description": "Solidity, Hardhat backend.",
   "scripts": {
     "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.js",
+    "deploy": "echo 'contract already deployed at 0x18e5d08561E162BbDbfC7666077e8982dCaeF0ac'",
+    "deploy --force": "hardhat run scripts/deploy.js",
     "test": "hardhat test tests/*.test.ts"
   },
   "keywords": [

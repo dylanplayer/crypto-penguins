@@ -21,6 +21,7 @@ const server = z.object({
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   MORALIS_API_KEY: z.string(),
   APP_DOMAIN: z.string(),
+  CONTRACT_ADDRESS: z.string(),
 });
 
 /**
@@ -38,6 +39,7 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
+  CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
