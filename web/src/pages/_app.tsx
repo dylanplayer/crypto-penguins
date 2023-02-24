@@ -1,6 +1,6 @@
 import { createClient, configureChains, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
-import { mainnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 import { SessionProvider } from "next-auth/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -10,7 +10,7 @@ import { Session } from "next-auth";
 import "@/styles/globals.css";
 
 const { provider, webSocketProvider, chains } = configureChains(
-  [mainnet],
+  [sepolia],
   [publicProvider()]
 );
 

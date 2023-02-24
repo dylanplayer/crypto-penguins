@@ -7,7 +7,11 @@ typechain-types
 
 #Hardhat files
 cache
-artifacts
+
+artifacts/@openzeppelin
+artifacts/build-info
+!artifacts/contracts/CryptoPenguin.sol/CryptoPenguin.json
+!artifacts/contracts/CryptoPenguin.sol/CryptoPenguin.dbg.json
 
 # Lock Files
 package-lock.json
