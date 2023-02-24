@@ -4,8 +4,8 @@ import { sepolia } from "wagmi/chains";
 import { SessionProvider } from "next-auth/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
-import { AppType } from "next/app";
-import { Session } from "next-auth";
+import { type AppType } from "next/app";
+import { type Session } from "next-auth";
 
 import "@/styles/globals.css";
 

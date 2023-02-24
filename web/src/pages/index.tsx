@@ -1,4 +1,4 @@
-import { InferGetServerSidePropsType, NextApiRequest, NextApiResponse, type NextPage } from "next";
+import { type InferGetServerSidePropsType, type NextApiRequest, type NextApiResponse } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { getSession } from "next-auth/react";
@@ -9,7 +9,7 @@ import CONTRACT from '../../../hardhat/artifacts/contracts/CryptoPenguin.sol/Cry
 import { sepolia } from "wagmi/chains";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps({ req, _res }: { req: NextApiRequest, _res: NextApiResponse }) {
+export async function getServerSideProps({ req }: { req: NextApiRequest, res: NextApiResponse }) {
   const session = await getSession({ req });
   const abi = CONTRACT.abi;
 
@@ -39,7 +39,7 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
       user?.address,
     ],
   });
-  const { data, isLoading, isSuccess, write } = useContractWrite(config);
+  const { data, isLoading, write } = useContractWrite(config);
   const { isLoading: waitingForConfirmations, isSuccess: confirmed } = useWaitForTransaction({
     confirmations: 5,
     hash: data?.hash,
@@ -48,9 +48,9 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
   // Need to redirect to penguin page here
   useEffect(() => {
     if (!waitingForConfirmations && confirmed && data) {
-      router.push(`/api/tx/${data.hash}`);
+      void router.push(`/api/tx/${data.hash}`);
     }
-  }, [waitingForConfirmations, confirmed, data])
+  }, [waitingForConfirmations, confirmed, data, router])
 
   return (
     <>
@@ -105,4 +105,4 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
       </main>
     </>
   );
-};
+}

@@ -1,13 +1,13 @@
 import { env } from "@/env.mjs";
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id } = req.query;
+  const id = req.query.id as string;
   const penguin = {
-    id,
+    id: id ,
     image: `${env.NEXTAUTH_URL}/assets/penguins/${id}.png`,
   }
   res.status(200).json(penguin);
