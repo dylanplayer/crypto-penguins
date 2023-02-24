@@ -34,7 +34,6 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
     abi,
     functionName: 'mint',
     chainId: sepolia.id,
-    // ignore this error
     args: [
       user?.address,
     ],
@@ -45,7 +44,6 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
     hash: data?.hash,
   })
 
-  // Need to redirect to penguin page here
   useEffect(() => {
     if (!waitingForConfirmations && confirmed && data) {
       void router.push(`/api/tx/${data.hash}`);
