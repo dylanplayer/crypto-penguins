@@ -34,16 +34,16 @@ export default function LoginPage() {
           });
 
           if (res?.url) {
-            push(res?.url);
+            void push(res?.url);
           }
         }
       }
     };
     
     if (status === "unauthenticated" && isConnected) {
-      handleAuth();
+      void handleAuth();
     }
-  }, [status, isConnected]);
+  }, [status, isConnected, chain, address, requestChallengeAsync, signMessageAsync, push]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#024b6d] to-[#15162c]">

@@ -1,4 +1,4 @@
-import { GetServerSideProps, InferGetServerSidePropsType, NextApiRequest, NextApiResponse } from "next";
+import { type InferGetServerSidePropsType, type NextApiRequest, type NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { useContractRead } from "wagmi";
 import CONTRACT from '../../../../hardhat/artifacts/contracts/CryptoPenguin.sol/CryptoPenguin.json';
 import { env } from "process";
-import { BigNumber } from "ethers";
+import { type BigNumber } from "ethers";
 
-export async function getServerSideProps({ req, _res }: { req: NextApiRequest, _res: NextApiResponse }) {
+export async function getServerSideProps({ req }: { req: NextApiRequest, res: NextApiResponse }) {
   const session = await getSession({ req });
   const abi = CONTRACT.abi;
 
@@ -28,13 +28,15 @@ export async function getServerSideProps({ req, _res }: { req: NextApiRequest, _
 
 export default function PenguinPage({ user, abi, contractAddress }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [isOwner, setIsOwner] = useState(false);
-
+  const router = useRouter();
   const { data, isError, isLoading } = useContractRead({
     address: `0x${contractAddress}`,
     abi: abi,
     functionName: 'getTokensByOwner',
     args: [user?.address],
-  })
+  });
+
+  const id = router.query.id as string;
 
   useEffect(() => {
     if (!isLoading && !isError && data) {
@@ -46,10 +48,7 @@ export default function PenguinPage({ user, abi, contractAddress }: InferGetServ
         }
       })
     }
-  }, [isLoading, isError, data]);
-
-  const router = useRouter();
-  const { id } = router.query;
+  }, [isLoading, isError, data, id]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#024b6d] to-[#15162c]">
