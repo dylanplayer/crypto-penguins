@@ -1,0 +1,16 @@
+{
+  "name": "penguin-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate:all": "node all.js",
+    "generate:one": "node random.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "canvas": "^2.11.0",
+    "fs": "^0.0.1-security"
+  }
+}
