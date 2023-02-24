@@ -69,11 +69,18 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
             className="rounded"
           />
           {!isLoading && write && (
+            <div className="flex flex-col space-y-6" id="button-block">
             <button
               disabled={!write}
-              className="w-full text-white bg-blue-400 dark:bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full text-white bg-violet-600 border-violet-600 border-2 hover:bg-violet-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
               onClick={() => write()}
-            >Mint</button>
+            >MINT THIS PENGUIN</button>
+            <button
+            disabled={!write}
+            className="w-full text-violet-300 border-violet-600 border-2 bg-transparent hover:bg-violet-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
+            onClick={() => write()}
+            >REGENERATE </button>
+            </div>
           )}
           {
             isLoading && (
