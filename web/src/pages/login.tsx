@@ -16,26 +16,30 @@ export default function LoginPage() {
   useEffect(() => {
     const handleAuth = async () => {
       if (chain && address) {
-        const challenge = await requestChallengeAsync({
-          address: address,
-          chainId: chain.id,
-        });
-  
-        const message = challenge?.message;
-  
-        if (message) {
-          const signature = await signMessageAsync({ message });
-    
-          const res = await signIn("moralis-auth", {
-            message,
-            signature,
-            redirect: false,
-            callbackUrl: "/",
+        try {
+          const challenge = await requestChallengeAsync({
+            address: address,
+            chainId: chain.id,
           });
-
-          if (res?.url) {
-            void push(res?.url);
+    
+          const message = challenge?.message;
+    
+          if (message) {
+            const signature = await signMessageAsync({ message });
+      
+            const res = await signIn("moralis-auth", {
+              message,
+              signature,
+              redirect: false,
+              callbackUrl: "/",
+            });
+  
+            if (res?.url) {
+              void push(res?.url);
+            }
           }
+        } catch (error) {
+          console.error(error);
         }
       }
     };
