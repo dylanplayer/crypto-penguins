@@ -1,0 +1,126 @@
+{
+  "accessories": [
+    {
+      "name": "Snorkel",
+      "image": "parts/accessories/snorkel.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "Baby Pink",
+      "image": "parts/backgrounds/baby_pink.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "Bright Yellow",
+      "image": "parts/backgrounds/bright_yellow.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "Lavender",
+      "image": "parts/backgrounds/lavender.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "peach",
+      "image": "parts/backgrounds/peach.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }      
+    },
+    {
+      "name": "Robin Egg Blue",
+      "image": "parts/backgrounds/robin_egg_blue.png",
+      "rarity": "common",
+      "placement": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "bellies": [
+    {
+      "name": "White",
+      "image": "parts/bellies/white.png",
+      "rarity": "common",
+      "placement": {
+        "x": 356,
+        "y": 271
+      }
+    }
+  ],
+  "bills": [
+    {
+      "name": "Orange",
+      "image": "parts/bills/orange.png",
+      "rarity": "common",
+      "placement": {
+        "x": 403,
+        "y": 327
+      }
+    }
+  ],
+  "bodies": [
+    {
+      "name": "Gray",
+      "image": "parts/bodies/gray.png",
+      "rarity": "common",
+      "placement": {
+        "x": 296,
+        "y": 205
+      }
+    }
+  ],
+  "eyes": [
+    {
+      "name": "Closed",
+      "image": "parts/eyes/closed.png",
+      "rarity": "common",
+      "placement": {
+        "x": 416,
+        "y": 330
+      }
+    }
+  ],
+  "feet": [
+    {
+      "name": "Orange",
+      "image": "parts/feet/orange.png",
+      "rarity": "common",
+      "placement": {
+        "x": 368,
+        "y": 765
+      }
+    }
+  ],
+  "flippers": [
+    {
+      "name": "Waddle",
+      "image": "parts/flippers/waddle.png",
+      "rarity": "common",
+      "placement": {
+        "x": 216,
+        "y": 430
+      }
+    }
+  ]
+}
