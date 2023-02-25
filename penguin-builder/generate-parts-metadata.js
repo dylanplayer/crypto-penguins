@@ -7,7 +7,7 @@ const baseDir = './parts';
 const rarities = {
   'common': 'common',
   'rare': 'rare',
-  'super-rare': 'super rare'
+  'super-rare': 'super-rare'
 }
 // Define the types of parts and their corresponding rarity levels
 const partTypes = {

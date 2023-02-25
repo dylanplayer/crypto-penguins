@@ -3,51 +3,111 @@ const path = require('path');
 const { createCanvas, loadImage } = require('canvas');
 const partsData = require('./parts/parts.json');
 
-const backgrounds = partsData.backgrounds;
-const feet = partsData.feet;
-const bodies = partsData.bodies;
-const bills = partsData.bills;
-const flippers = partsData.flippers;
-const eyes = partsData.eyes;
-const accessories = partsData.accessories;
-
-const canvasWidth = 1000;
-const canvasHeight = 1000;
-
-// Define the probabilities of each rarity level appearing
-const rarityProbabilities = {
-  'common': 0.6,
-  'rare': 0.25,
-  'super-rare': 0.15
-};
-
-// Define a function to choose a random part based on its rarity level
-function chooseRandomPart(parts, rarity) {
-  const filteredParts = parts.filter(part => part.rarity === rarity);
-  const randomIndex = Math.floor(Math.random() * filteredParts.length);
-  return filteredParts[randomIndex];
-}
-
 // Define a function to generate a random penguin
 async function generateRandomPenguin() {
+  const partsData = require('./parts/parts.json');
+
+  const backgrounds = partsData.backgrounds;
+  const feet = partsData.feet;
+  const bodies = partsData.bodies;
+  const bills = partsData.bills;
+  const flippers = partsData.flippers;
+  const eyes = partsData.eyes;
+  const accessories = partsData.accessories;
+  
+  const canvasWidth = 1000;
+  const canvasHeight = 1000;
+  
+  // Define the probabilities of each rarity level appearing
+  const rarityProbabilities = {
+    'common': 0.6,
+    'rare': 0.25,
+    'super-rare': 0.15
+  };
+  
+  // Define a function to choose a random part based on its rarity level
+  function chooseRandomPart(parts, rarity) {
+    const filteredParts = parts.filter(part => part.rarity === rarity);
+  
+    if (filteredParts.length === 1) {
+      return filteredParts[0];
+    }
+  
+    const randomIndex = Math.floor(Math.random() * filteredParts.length);
+    return filteredParts[randomIndex];
+  }
+
   const parts = {
-    background: chooseRandomPart(backgrounds, 'common'),
-    feet: chooseRandomPart(feet, 'common'),
+    background: null,
+    feet: null,
     body: chooseRandomPart(bodies, 'common'),
-    bill: chooseRandomPart(bills, 'common'),
-    flipper: chooseRandomPart(flippers, 'common'),
-    eyes: chooseRandomPart(eyes, 'common'),
-    accessory: null
+    bill: null,
+    flipper: null,
+    eyes: null,
+    accessory: null,
   };
 
-  // Randomly choose a rarity level for the accessory part
-  const rarityRoll = Math.random();
+  let rarityRoll = Math.random();
   if (rarityRoll < rarityProbabilities['rare']) {
     parts.accessory = chooseRandomPart(accessories, 'rare');
   } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
     parts.accessory = chooseRandomPart(accessories, 'super-rare');
   } else {
     parts.accessory = chooseRandomPart(accessories, 'common');
+  }
+
+  rarityRoll = Math.random();
+  if (rarityRoll < rarityProbabilities['rare']) {
+    parts.eyes = chooseRandomPart(eyes, 'rare');
+  } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+    parts.eyes = chooseRandomPart(eyes, 'super-rare');
+  } else {
+    parts.eyes = chooseRandomPart(eyes, 'common');
+  }
+
+  rarityRoll = Math.random();
+  if (rarityRoll < rarityProbabilities['rare']) {
+    parts.flipper = chooseRandomPart(flippers, 'rare');
+  } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+    parts.flipper = chooseRandomPart(flippers, 'super-rare');
+  } else {
+    parts.flipper = chooseRandomPart(flippers, 'common');
+  }
+
+  rarityRoll = Math.random();
+  if (rarityRoll < rarityProbabilities['rare']) {
+    parts.bill = chooseRandomPart(bills, 'rare');
+  } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+    parts.bill = chooseRandomPart(bills, 'super-rare');
+  } else {
+    parts.bill = chooseRandomPart(bills, 'common');
+  }
+
+  // rarityRoll = Math.random();
+  // if (rarityRoll < rarityProbabilities['rare']) {
+  //   parts.body = chooseRandomPart(bodies, 'rare');
+  // } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+  //   parts.body = chooseRandomPart(bodies, 'super-rare');
+  // } else {
+  //   parts.body = chooseRandomPart(bodies, 'common');
+  // }
+
+  rarityRoll = Math.random();
+  if (rarityRoll < rarityProbabilities['rare']) {
+    parts.feet = chooseRandomPart(feet, 'rare');
+  } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+    parts.feet = chooseRandomPart(feet, 'super-rare');
+  } else {
+    parts.feet = chooseRandomPart(feet, 'common');
+  }
+
+  rarityRoll = Math.random();
+  if (rarityRoll < rarityProbabilities['rare']) {
+    parts.background = chooseRandomPart(backgrounds, 'rare');
+  } else if (rarityRoll < rarityProbabilities['rare'] + rarityProbabilities['super-rare']) {
+    parts.background = chooseRandomPart(backgrounds, 'super-rare');
+  } else {
+    parts.background = chooseRandomPart(backgrounds, 'common');
   }
 
   // Load the images for each part and draw them on a canvas
