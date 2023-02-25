@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate:all": "node all.js",
+    "generate": "node index.js",
     "generate:one": "node random.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
