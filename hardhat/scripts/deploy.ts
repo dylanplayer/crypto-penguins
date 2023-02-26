@@ -1,4 +1,4 @@
-const { ethers } = require("hardhat");
+import { ethers } from "hardhat";
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -10,6 +10,9 @@ async function main() {
   const cryptoPenguin = await CryptoPenguin.deploy("https://crypto-penguins.dylanplayer.xyz/assets/penguins/");
 
   console.log("CryptoPenguin address:", cryptoPenguin.address);
+
+  console.log("Awaiting deployment...");
+  await cryptoPenguin.deployed();
 }
 
 main()

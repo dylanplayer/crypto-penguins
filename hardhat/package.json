@@ -4,7 +4,7 @@
   "description": "Solidity, Hardhat backend.",
   "scripts": {
     "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.js",
+    "deploy": "hardhat run scripts/deploy.ts --network sepolia",
     "test": "hardhat test tests/*.test.ts"
   },
   "keywords": [
