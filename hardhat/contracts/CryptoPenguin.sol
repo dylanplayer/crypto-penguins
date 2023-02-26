@@ -33,12 +33,31 @@ contract CryptoPenguin is ERC721URIStorage, AccessControl {
     _tokenBaseURI = baseURI;
   }
 
+  function uint256ToString(uint256 value) public pure returns (string memory) {
+    if (value == 0) {
+        return "0";
+    }
+    uint256 temp = value;
+    uint256 digits;
+    while (temp != 0) {
+        digits++;
+        temp /= 10;
+    }
+    bytes memory buffer = new bytes(digits);
+    while (value != 0) {
+        digits -= 1;
+        buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+        value /= 10;
+    }
+    return string(buffer);
+  }
+
   function mint(address recipient) public returns (uint256) {
     require(_tokenIds.current() < MAX_PENGUINS, "CryptoPenguin: maximum number of penguins reached");
     _tokenIds.increment();
     uint256 newTokenId = _tokenIds.current();
     _mint(recipient, newTokenId);
-    _setTokenURI(newTokenId, string(abi.encodePacked(_baseURI(), newTokenId, "/metadata.json")));
+    _setTokenURI(newTokenId, string(abi.encodePacked(getBaseURI(), uint256ToString(newTokenId), "/metadata.json")));
     return newTokenId;
   }
 

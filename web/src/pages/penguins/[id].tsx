@@ -55,7 +55,7 @@ export default function PenguinPage({ user, abi, contractAddress }: InferGetServ
   const { data: transferData, isLoading: transeferIsLoading, write: transfer } = useContractWrite(transferConfig);
 
   const { isLoading: waitingForTransferConfirmations, isSuccess: transferConfirmed } = useWaitForTransaction({
-    confirmations: 5,
+    confirmations: 9,
     hash: transferData?.hash,
   })
 
@@ -124,7 +124,7 @@ export default function PenguinPage({ user, abi, contractAddress }: InferGetServ
                         </svg>
                         <span className="sr-only">Waiting for confirmations...</span>
                     </div>
-                    <p className="text-white text-center mt-4">Waiting for 5 confirmations</p>
+                    <p className="text-white text-center mt-4">Waiting for 9 confirmations</p>
                     <p className="text-white text-center">Transaction: {transferData?.hash}</p>
                   </div>
                 )

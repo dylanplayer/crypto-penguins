@@ -41,7 +41,7 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
   });
   const { data, isLoading, write } = useContractWrite(config);
   const { isLoading: waitingForConfirmations, isSuccess: confirmed } = useWaitForTransaction({
-    confirmations: 5,
+    confirmations: 9,
     hash: data?.hash,
   })
 
@@ -102,7 +102,7 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
                     </svg>
                     <span className="sr-only">Waiting for confirmations...</span>
                 </div>
-                <p className="text-white text-center mt-4">Waiting for 5 confirmations</p>
+                <p className="text-white text-center mt-4">Waiting for 9 confirmations</p>
                 <p className="text-white text-center">Transaction: {data?.hash}</p>
               </div>
             )
