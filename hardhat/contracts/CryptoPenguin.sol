@@ -38,7 +38,7 @@ contract CryptoPenguin is ERC721URIStorage, AccessControl {
     _tokenIds.increment();
     uint256 newTokenId = _tokenIds.current();
     _mint(recipient, newTokenId);
-    _setTokenURI(newTokenId, string(abi.encodePacked(_baseURI(), newTokenId)));
+    _setTokenURI(newTokenId, string(abi.encodePacked(_baseURI(), newTokenId, "/metadata.json")));
     return newTokenId;
   }
 

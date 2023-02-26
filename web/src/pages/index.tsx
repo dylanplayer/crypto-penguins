@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { getSession } from "next-auth/react";
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { env } from "@/env.mjs";
 import CONTRACT from '../../../hardhat/artifacts/contracts/CryptoPenguin.sol/CryptoPenguin.json';
 import { sepolia } from "wagmi/chains";
@@ -29,6 +29,7 @@ export async function getServerSideProps({ req }: { req: NextApiRequest, res: Ne
 
 export default function Home({ user, abi, contractAddress }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const [randomPenguin, setRandomPenguin] = useState(Math.floor(Math.random() * 1000) + 1);
   const { config } = usePrepareContractWrite({
     address: `0x${contractAddress}`,
     abi,
@@ -50,6 +51,13 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
     }
   }, [waitingForConfirmations, confirmed, data, router])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRandomPenguin(Math.floor(Math.random() * 1000) + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+
   return (
     <>
       <Head>
@@ -60,8 +68,8 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
         <div className="container max-w-md flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-4xl font-bold text-white text-center">Crypto Penguins</h1>
           <Image
-            src="/assets/penguins/1.png"
-            alt="Crypto Penguin Egg"
+            src={`/assets/penguins/${randomPenguin}/penguin.png`}
+            alt="Random Crypto Penguin"
             width={450}
             height={450}
             className="rounded"
@@ -71,7 +79,7 @@ export default function Home({ user, abi, contractAddress }: InferGetServerSideP
               disabled={!write}
               className="w-full text-white bg-blue-400 dark:bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
               onClick={() => write()}
-            >Mint</button>
+            >Mint Next</button>
           )}
           {
             isLoading && (

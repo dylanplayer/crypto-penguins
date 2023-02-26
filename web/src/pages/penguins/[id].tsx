@@ -75,7 +75,7 @@ export default function PenguinPage({ user, abi, contractAddress }: InferGetServ
       <div className="container max-w-md flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <h1 className="text-4xl font-bold text-white text-center"># {id}</h1>
         <Image
-          src={`/assets/penguins/${id}.png`}
+          src={`/assets/penguins/${id}/penguin.png`}
           alt="Crypto Penguin"
           width={450}
           height={450}

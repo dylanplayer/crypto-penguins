@@ -141,7 +141,8 @@ async function generateRandomPenguin() {
   }
 
   const penguinCount = fs.readdirSync(dirPath).length;
-  const penguinDirPath = path.join(dirPath, `${penguinCount + 1}`);
+  const tokenId = penguinCount + 1;
+  const penguinDirPath = path.join(dirPath, `${tokenId}`);
 
   if (!fs.existsSync(penguinDirPath)) {
     fs.mkdirSync(penguinDirPath)
@@ -152,6 +153,8 @@ async function generateRandomPenguin() {
   fs.writeFileSync(imagePath, buffer);
 
   const metadata = {
+    id: tokenId,
+    image: `https://crypto-penguins.dylanplayer.xyz/assets/penguins/${tokenId}/penguin.png`,
     background: parts.background.name,
     feet: parts.feet.name,
     body: parts.body.name,
