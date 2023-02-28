@@ -14,17 +14,17 @@ async function generateRandomPenguin() {
   const flippers = partsData.flippers;
   const eyes = partsData.eyes;
   const accessories = partsData.accessories;
-  
+
   const canvasWidth = 1000;
   const canvasHeight = 1000;
-  
+
   // Define the probabilities of each rarity level appearing
   const rarityProbabilities = {
     'common': 0.6,
     'rare': 0.25,
     'super-rare': 0.15
   };
-  
+
   // Define a function to choose a random part based on its rarity level
   function chooseRandomPart(parts, rarity) {
     const filteredParts = parts.filter(part => part.rarity === rarity);
@@ -155,13 +155,38 @@ async function generateRandomPenguin() {
   const metadata = {
     id: tokenId,
     image: `https://crypto-penguins.dylanplayer.xyz/assets/penguins/${tokenId}/penguin.png`,
-    background: parts.background.name,
-    feet: parts.feet.name,
-    body: parts.body.name,
-    bill: parts.bill.name,
-    flipper: parts.flipper.name,
-    eyes: parts.eyes.name,
-    accessory: parts.accessory.name
+    image_url: `https://crypto-penguins.dylanplayer.xyz/assets/penguins/${tokenId}/penguin.png`,
+    external_url: `https://crypto-penguins.dylanplayer.xyz/penguin/${tokenId}`,
+    attributes: [
+      {
+        trait_type: 'Background',
+        value: parts.background.name
+      },
+      {
+        trait_type: 'Feet',
+        value: parts.feet.name
+      },
+      {
+        trait_type: 'Body',
+        value: parts.body.name
+      },
+      {
+        trait_type: 'Bill',
+        value: parts.bill.name
+      },
+      {
+        trait_type: 'Flipper',
+        value: parts.flipper.name
+      },
+      {
+        trait_type: 'Eyes',
+        value: parts.eyes.name
+      },
+      {
+        trait_type: 'Accessory',
+        value: parts.accessory.name
+      }
+    ],
   };
 
   const metadataPath = path.join(penguinDirPath, 'metadata.json');
