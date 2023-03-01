@@ -51,10 +51,7 @@ export default function Home({
   const [randomPenguin, setRandomPenguin] = useState(
     Math.floor(Math.random() * 1000) + 1
   );
-  const [penguinData, setPenguinData] = useState({
-    id: 0,
-    background: "arctic",
-  });
+
   const { config } = usePrepareContractWrite({
     address: `0x${contractAddress}`,
     abi,
@@ -81,32 +78,6 @@ export default function Home({
     }, 800);
     return () => clearInterval(interval);
   });
-
-  async function getPenguinData(randomPenguin) {
-    const response = await fetch(
-      `/assets/penguins/${randomPenguin}/metadata.json`
-    );
-    const data = await response.json();
-    console.log(data);
-    return <h1>{data.id}</h1>;
-  }
-
-  const penguinDna = () => {
-    useEffect(() => {
-      async function getPenguinData(randomPenguin) {
-        try {
-          const response = await fetch(
-            `/assets/penguins/${randomPenguin}/metadata.json`
-          );
-          const data = await response.json();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      getPenguinData(randomPenguin);
-    }, [randomPenguin]);
-    return <div>{data.id}</div>;
-  };
 
   return (
     <>

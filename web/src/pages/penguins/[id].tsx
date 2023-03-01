@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import {
   type InferGetServerSidePropsType,
   type NextApiRequest,
@@ -104,36 +107,37 @@ export default function PenguinPage({
   }
 
   const [penguinData, setPenguinData] = useState<PenguinData>({
-    id: 0,
-    background: "arctic",
-    feet: "Penguin",
-    body: "A cute penguin.",
+    id: NaN,
+    background: "",
+    feet: "",
+    body: "",
     bill: "",
     flippers: "",
     eyes: "",
     p_accessory: "",
   });
 
-  const getPenguinData = async () => {
-    const penguinMetadata = `/assets/penguins/${id}/metadata.json`;
-    const response = await fetch(penguinMetadata);
-    const data = await response.json();
-    setPenguinData({
-      id: data.id,
-      background: data.attributes[0].value,
-      feet: data.attributes[1].value,
-      body: data.attributes[2].value,
-      bill: data.attributes[3].value,
-      flippers: data.attributes[4].value,
-      eyes: data.attributes[5].value,
-      p_accessory: data.attributes[6].value,
-    });
-    console.log(penguinData);
-  };
-
   useEffect(() => {
-    getPenguinData();
-  }, []);
+    const getPenguinData = async () => {
+      const penguinMetadata = `/assets/penguins/${id}/metadata.json`;
+      const response = await fetch(penguinMetadata);
+      const data = await response.json();
+      setPenguinData({
+        id: data.id,
+        background: data.attributes[0].value,
+        feet: data.attributes[1].value,
+        body: data.attributes[2].value,
+        bill: data.attributes[3].value,
+        flippers: data.attributes[4].value,
+        eyes: data.attributes[5].value,
+        p_accessory: data.attributes[6].value,
+      });
+    };
+
+    getPenguinData()
+      .catch(console.error);
+  }, [id])
+  
 
   return (
     <main className="grid min-h-screen grid-cols-12 grid-rows-6 bg-gradient-to-b from-[#024b6d] to-[#15162c]">

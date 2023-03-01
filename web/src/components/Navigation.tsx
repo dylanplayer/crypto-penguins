@@ -7,7 +7,7 @@ export default function Navigation() {
     <div id="navbar" className="flex w-screen flex-row justify-between p-6">
       <div>
         <span className="text-xl text-white">
-          <a href="/">Crypto Penguins</a>
+          <Link href="/">Crypto Penguins</Link>
         </span>
       </div>
       <div className="flex space-x-4">

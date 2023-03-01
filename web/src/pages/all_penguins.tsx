@@ -1,23 +1,15 @@
-import {
-  type InferGetServerSidePropsType,
-  type NextApiRequest,
-  type NextApiResponse,
-} from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { getSession } from "next-auth/react";
-import { env } from "@/env.mjs";
-import CONTRACT from "../../../hardhat/artifacts/contracts/CryptoPenguin.sol/CryptoPenguin.json";
 import Navigation from "@/components/Navigation";
 
 export default function PenguinIndex() {
   const allPenguins = [];
 
-  for (let i = 1; i < 100; i++) {
+  for (let i = 1; i < 101; i++) {
     allPenguins.push(i);
   }
 
-  const penguinImages = allPenguins.map((i) => (
+  const penguinImages = allPenguins.map((i: number) => (
     <div key={i} className="m-4">
       <div className="m-4 mt-6 overflow-hidden rounded-xl border-4 border-transparent hover:border-violet-600">
         <a href={`/penguins/${i}`}>
