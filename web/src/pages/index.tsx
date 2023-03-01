@@ -140,7 +140,7 @@ export default function Home({
               <div className="flex flex-col space-y-6" id="button-block">
                 <button
                   disabled={!write}
-                  className="px-auto max-w-[500px] rounded-lg border-2 border-violet-600 bg-violet-600 px-5 py-2.5 text-center text-sm font-medium uppercase text-white hover:bg-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="animate-bounce px-auto max-w-[500px] rounded-lg border-2 text-violet-900 border-[#7beacc] bg-[#7beacc] px-5 py-2.5 text-center text-sm font-medium uppercase text-white hover:bg-[#009d86] hover:border-[#009d86] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                   onClick={() => write()}
                 >
                   Mint a random penguin
