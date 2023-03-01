@@ -170,7 +170,7 @@ export default function Home({
               </div>
             )}
             {waitingForConfirmations && (
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center gap-1 max-w-[500px] overflow-ellipsis">
                 <div role="status">
                   <svg
                     aria-hidden="true"
@@ -193,7 +193,7 @@ export default function Home({
                 <p className="mt-4 text-center text-white">
                   Waiting for 9 confirmations
                 </p>
-                <p className="text-center text-white">
+                <p className="text-center text-white max-w-[500px] overflow-hidden text-ellipsis">
                   Transaction: {data?.hash}
                 </p>
               </div>

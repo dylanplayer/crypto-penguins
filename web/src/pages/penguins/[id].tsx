@@ -123,42 +123,43 @@ export default function PenguinPage({
   useEffect(() => {getPenguinData()}, []);
 
   return (
-    <main className="grid min-h-screen bg-gradient-to-b from-[#024b6d] to-[#15162c]">
-      <div className="cols-12">
+    <main className="grid grid-cols-12 grid-rows-6 min-h-screen bg-gradient-to-b from-[#024b6d] to-[#15162c]">
+      <div className="col-span-12">
         <Navigation />
       </div>
-      <div className="cols-12">
-        <h1 className="text-center text-4xl font-bold text-white">
-          Crypto Penguin # {id}
-        </h1>
-        <Image
-          src={`/assets/penguins/${id}/penguin.png`}
-          alt="Crypto Penguin"
-          width={450}
-          height={450}
-          className="rounded"
-        />
-        <div id="penguinData" className="flex flex-col gap-2 text-white">
-          <p>Background: {penguinData.background}</p>
-          <p>Feet: {penguinData.feet}</p>
-          <p>Body: {penguinData.body}</p>
-          <p>Bill: {penguinData.bill}</p>
-          <p>Flippers: {penguinData.flippers}</p>
-          <p>Eyes: {penguinData.eyes}</p>
-          <p>Accessory: {penguinData.p_accessory}</p>
+      <div className="col-span-12 row-span-3 -mt-20 md:mt-20 flex flex-wrap mx-auto p-4 md:space-x-10 space-y-10 md:space-y-0">
+        <div className="overflow-hidden rounded-xl">
+            <Image
+              src={`/assets/penguins/${penguinData.id}/penguin.png`}
+              alt="Random Crypto Penguin"
+              width={500}
+              height={500}
+            />
         </div>
-        {isOwner && (
-          <div className="flex w-full flex-col items-center gap-2">
-            <h1 className="text-center text-2xl font-bold text-white">
+        <div id="penguinData" className="flex flex-col gap-2 text-lg text-white justify-between">
+          <h1 className="text-center text-2xl font-bold mb-4 text-white">
+            Crypto Penguin # {id}
+          </h1>
+          <p>Background: <strong>{penguinData.background}</strong></p>
+          <p>Feet: <strong>{penguinData.feet}</strong></p>
+          <p>Body: <strong>{penguinData.body}</strong></p>
+          <p>Bill: <strong>{penguinData.bill}</strong></p>
+          <p>Flippers: <strong>{penguinData.flippers}</strong></p>
+          <p>Eyes: <strong>{penguinData.eyes}</strong></p>
+          <p>Accessory: <strong>{penguinData.p_accessory}</strong></p>
+
+          {isOwner && (
+          <div className="flex w-full flex-col gap-2 bg-[#271976] my-2 p-4 rounded-md">
+            <p className="text-xl text-left font-bold text-violet-200">
               Transfer
-            </h1>
+            </p>
             {!transeferIsLoading && !transferConfirmed && (
               <div className="flex w-full flex-col gap-1">
-                <label className="text-white" htmlFor="recipient">
+                <label className="text-violet-300" htmlFor="recipient">
                   Recipient
                 </label>
                 <input
-                  className="w-full rounded bg-white py-2 px-4 text-sm font-bold text-[#15162c]"
+                  className="w-full rounded outline-violet-500 text-violet-900 bg-slate-300 focus:bg-white py-2 px-4 text-sm font-bold"
                   type="text"
                   placeholder="Enter a recipient"
                   value={recipient}
@@ -217,8 +218,10 @@ export default function PenguinPage({
               <p className="text-center text-white">Transfer confirmed!</p>
             )}
           </div>
-        )}
+          )}
+        </div>
       </div>
+      <div className="col-span-12"></div>
     </main>
   );
 }
