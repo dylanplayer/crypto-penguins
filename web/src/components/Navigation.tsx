@@ -1,4 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import ShuffleButton from "./ShuffleButton";
 
 export default function Navigation() {
   return (
@@ -6,7 +7,8 @@ export default function Navigation() {
       <div>
         <span className="text-white text-xl"><a href="/">Crypto Penguins</a></span>
       </div>
-      <div>
+      <div className="flex space-x-4">
+        <ShuffleButton />
         <ConnectButton />
       </div>
     </div>

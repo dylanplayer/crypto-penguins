@@ -78,7 +78,7 @@ export default function Home({
   useEffect(() => {
     const interval = setInterval(() => {
       setRandomPenguin(Math.floor(Math.random() * 1000) + 1);
-    }, 5000);
+    }, 800);
     return () => clearInterval(interval);
   });
 
@@ -120,12 +120,12 @@ export default function Home({
         </div>
         <div
           id="crypto-penguin-block"
-          className="col-span-10 col-start-2 md:col-span-6 md:col-start-4"
+          className="col-span-12 flex justify-around md:col-span-6 md:col-start-4"
         >
-          <div id="nft-block" className="flex flex-wrap space-y-6">
+          <div id="nft-block" className="flex flex-col space-y-6">
             <div
               id="nft-image"
-              className="relative h-[500px] w-full max-w-[500px] overflow-hidden rounded-2xl"
+              className="relative h-[500px] w-full min-w-[500px] overflow-hidden rounded-2xl"
             >
               <Image
                 src={`/assets/penguins/${randomPenguin}/penguin.png`}
@@ -134,14 +134,7 @@ export default function Home({
                 objectFit="cover"
               />
             </div>
-            <div
-              id="nft-attributes"
-              className="h-20 w-full rounded-xl border-2 text-white"
-            >
-              <p>{penguinData.id}</p>
-              <p>{penguinData.background}</p>
-            </div>
-          </div>
+          
           <div id="cta-and-loading" className="pt-8">
             {!isLoading && write && (
               <div className="flex flex-col space-y-6" id="button-block">
@@ -150,7 +143,7 @@ export default function Home({
                   className="px-auto max-w-[500px] rounded-lg border-2 border-violet-600 bg-violet-600 px-5 py-2.5 text-center text-sm font-medium uppercase text-white hover:bg-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
                   onClick={() => write()}
                 >
-                  Mint this penguin
+                  Mint a random penguin
                 </button>
                 <ShuffleButton />
               </div>
@@ -205,6 +198,7 @@ export default function Home({
                 </p>
               </div>
             )}
+          </div>
           </div>
         </div>
       </main>
